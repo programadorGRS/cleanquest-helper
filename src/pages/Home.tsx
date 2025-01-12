@@ -24,17 +24,27 @@ const Home = () => {
       name: 'My Home',
       address: '123 Main St, City',
       image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04',
+      type: 'house' as const,
       rooms: 3,
       bathrooms: 2,
       area: '150m²',
+      rating: 4.5,
+      temperature: '72°F',
+      estimatedTime: '2.5 hours',
+      description: 'A beautiful modern home with a spacious garden.'
     },
     {
       id: '2',
       name: 'Beach House',
       address: '456 Ocean Ave, Beach City',
+      type: 'house' as const,
       rooms: 4,
       bathrooms: 3,
       area: '200m²',
+      rating: 4.8,
+      temperature: '75°F',
+      estimatedTime: '3 hours',
+      description: 'Luxurious beach house with ocean views.'
     },
   ];
 
@@ -55,6 +65,10 @@ const Home = () => {
   const handleRequestCleaning = () => {
     setShowPropertyDetails(false);
     setShowServiceSelector(true);
+  };
+
+  const handleBack = () => {
+    setShowPropertyDetails(false);
   };
 
   return (
@@ -110,6 +124,8 @@ const Home = () => {
               name={property.name}
               address={property.address}
               image={property.image}
+              type={property.type}
+              rating={property.rating}
               onSelect={() => handlePropertyClick(property.id)}
             />
           ))}
@@ -118,13 +134,11 @@ const Home = () => {
 
       {/* Property Details Dialog */}
       <Dialog open={showPropertyDetails} onOpenChange={setShowPropertyDetails}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Property Details</DialogTitle>
-          </DialogHeader>
+        <DialogContent className="sm:max-w-[600px]">
           <PropertyDetails
             property={properties.find(p => p.id === selectedProperty)}
             onRequestCleaning={handleRequestCleaning}
+            onBack={handleBack}
           />
         </DialogContent>
       </Dialog>
