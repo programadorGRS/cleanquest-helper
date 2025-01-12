@@ -62,6 +62,10 @@ const Home = () => {
     setShowPropertyDetails(true);
   };
 
+  const handleEditProperty = (propertyId: string) => {
+    navigate(`/register-property?edit=${propertyId}`);
+  };
+
   const handleRequestCleaning = () => {
     setShowPropertyDetails(false);
     setShowServiceSelector(true);
@@ -127,6 +131,7 @@ const Home = () => {
               type={property.type}
               rating={property.rating}
               onSelect={() => handlePropertyClick(property.id)}
+              onEdit={() => handleEditProperty(property.id)}
             />
           ))}
         </div>

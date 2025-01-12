@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from "@/components/ui/card";
-import { Building, Home, MapPin, Star } from 'lucide-react';
+import { Building, Home, MapPin, Star, Pencil } from 'lucide-react';
 
 interface PropertyCardProps {
   name: string;
@@ -9,9 +9,15 @@ interface PropertyCardProps {
   rating?: number;
   type: 'house' | 'company';
   onSelect: () => void;
+  onEdit: () => void;
 }
 
-const PropertyCard = ({ name, address, image, rating = 0, type, onSelect }: PropertyCardProps) => {
+const PropertyCard = ({ name, address, image, rating = 0, type, onSelect, onEdit }: PropertyCardProps) => {
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onEdit();
+  };
+
   return (
     <Card 
       className="group relative overflow-hidden rounded-2xl hover:shadow-lg transition-all duration-300 cursor-pointer animate-fadeIn"
@@ -34,21 +40,11 @@ const PropertyCard = ({ name, address, image, rating = 0, type, onSelect }: Prop
           </div>
         )}
         <div className="absolute top-4 right-4">
-          <button className="text-white hover:text-primary transition-colors">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-6 h-6"
-            >
-              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-            </svg>
+          <button 
+            className="text-white hover:text-primary transition-colors"
+            onClick={handleEditClick}
+          >
+            <Pencil className="w-6 h-6" />
           </button>
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent text-white">
