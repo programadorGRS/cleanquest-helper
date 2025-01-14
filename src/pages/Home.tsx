@@ -96,7 +96,7 @@ const Home = () => {
                   <Button 
                     variant="ghost" 
                     className="w-full justify-start" 
-                    onClick={() => navigate('/profile')}
+                    onClick={() => navigate('/edit-profile')}
                   >
                     <User2 className="w-4 h-4 mr-2" />
                     Edit Profile
@@ -104,7 +104,7 @@ const Home = () => {
                   <Button 
                     variant="ghost" 
                     className="w-full justify-start"
-                    onClick={() => navigate('/profile')}
+                    onClick={() => navigate('/balance')}
                   >
                     <Wallet className="w-4 h-4 mr-2" />
                     Balance
@@ -112,7 +112,7 @@ const Home = () => {
                   <Button 
                     variant="ghost" 
                     className="w-full justify-start"
-                    onClick={() => navigate('/profile')}
+                    onClick={() => navigate('/transaction-history')}
                   >
                     <FileText className="w-4 h-4 mr-2" />
                     Transaction History
@@ -120,7 +120,7 @@ const Home = () => {
                   <Button 
                     variant="ghost" 
                     className="w-full justify-start"
-                    onClick={() => navigate('/profile')}
+                    onClick={() => navigate('/change-password')}
                   >
                     <Lock className="w-4 h-4 mr-2" />
                     Change Password
