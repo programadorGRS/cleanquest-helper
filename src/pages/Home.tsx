@@ -3,7 +3,7 @@ import PropertyCard from '../components/PropertyCard';
 import ServiceTypeSelector from '../components/ServiceTypeSelector';
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
-import { Plus, User2 } from 'lucide-react';
+import { Plus, User2, Wallet, FileText, Lock } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -92,7 +92,40 @@ const Home = () => {
                 <SheetHeader>
                   <SheetTitle>Profile Settings</SheetTitle>
                 </SheetHeader>
-                {/* Profile settings content will go here */}
+                <div className="mt-6 space-y-2">
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start" 
+                    onClick={() => navigate('/profile')}
+                  >
+                    <User2 className="w-4 h-4 mr-2" />
+                    Edit Profile
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start"
+                    onClick={() => navigate('/profile')}
+                  >
+                    <Wallet className="w-4 h-4 mr-2" />
+                    Balance
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start"
+                    onClick={() => navigate('/profile')}
+                  >
+                    <FileText className="w-4 h-4 mr-2" />
+                    Transaction History
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start"
+                    onClick={() => navigate('/profile')}
+                  >
+                    <Lock className="w-4 h-4 mr-2" />
+                    Change Password
+                  </Button>
+                </div>
               </SheetContent>
             </Sheet>
             <Sheet>
