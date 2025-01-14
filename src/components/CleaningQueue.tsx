@@ -64,25 +64,29 @@ const CleaningQueue = () => {
       {cleanings.map((cleaning) => (
         <Card
           key={cleaning.id}
-          className={`p-4 space-y-2 cursor-pointer transition-all duration-300 ${
+          className={`p-4 cursor-pointer transition-all duration-300 ${
             expandedCard === cleaning.id ? 'ring-2 ring-primary' : ''
           }`}
           onClick={() => toggleExpand(cleaning.id)}
         >
-          <div className="flex justify-between items-center">
-            <h3 className="font-semibold">{cleaning.property}</h3>
-            <span className="text-sm text-gray-500">
-              {new Date(cleaning.scheduledFor).toLocaleDateString()}
-            </span>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            {cleaning.type === 'standard' ? (
-              <Clock className="w-4 h-4 text-primary" />
-            ) : (
-              <Sparkles className="w-4 h-4 text-secondary" />
-            )}
-            <span className="text-sm capitalize">{cleaning.type} Cleaning</span>
+          <div className="flex justify-between items-start">
+            <div className="space-y-2 flex-1">
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold">{cleaning.property}</h3>
+                <span className="text-sm text-gray-500">
+                  {new Date(cleaning.scheduledFor).toLocaleDateString()}
+                </span>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                {cleaning.type === 'standard' ? (
+                  <Clock className="w-4 h-4 text-primary" />
+                ) : (
+                  <Sparkles className="w-4 h-4 text-secondary" />
+                )}
+                <span className="text-sm capitalize">{cleaning.type} Cleaning</span>
+              </div>
+            </div>
           </div>
 
           {expandedCard === cleaning.id && (
@@ -119,6 +123,7 @@ const CleaningQueue = () => {
                       e.stopPropagation();
                       handleCancel(cleaning.id);
                     }}
+                    className="ml-2"
                   >
                     <X className="w-4 h-4 mr-2" />
                     Cancel
@@ -127,11 +132,11 @@ const CleaningQueue = () => {
               ) : cleaning.status === 'pending_approval' && cleaning.cleaner ? (
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
                       <User2 className="w-6 h-6 text-gray-400" />
                     </div>
-                    <div>
-                      <p className="font-semibold">{cleaning.cleaner.name}</p>
+                    <div className="min-w-0">
+                      <p className="font-semibold truncate">{cleaning.cleaner.name}</p>
                       <div className="flex items-center gap-2 text-sm text-gray-500">
                         <span>⭐ {cleaning.cleaner.rating}</span>
                         <span>•</span>
