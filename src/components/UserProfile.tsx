@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
-import { User, Wallet, Clock, Lock } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { User, Wallet, Clock, Lock, Edit2 } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 const UserProfile = () => {
@@ -16,12 +17,35 @@ const UserProfile = () => {
     });
   };
 
+  const handleProfileUpdate = () => {
+    toast({
+      title: "Profile Updated",
+      description: "Your profile information has been saved.",
+    });
+  };
+
   return (
     <div className="space-y-6 p-4 max-w-2xl mx-auto">
       <Card className="p-6 space-y-6">
         <div className="flex items-center gap-4">
-          <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
-            <User className="w-10 h-10 text-gray-400" />
+          <div className="relative">
+            <Avatar className="w-20 h-20">
+              <AvatarImage src="/placeholder.svg" />
+              <AvatarFallback>
+                <User className="w-10 h-10 text-gray-400" />
+              </AvatarFallback>
+            </Avatar>
+            <Button 
+              size="icon" 
+              variant="outline" 
+              className="absolute bottom-0 right-0 rounded-full"
+              onClick={() => toast({
+                title: "Upload Photo",
+                description: "Photo upload functionality coming soon.",
+              })}
+            >
+              <Edit2 className="w-4 h-4" />
+            </Button>
           </div>
           <div>
             <h2 className="text-2xl font-bold">John Doe</h2>
@@ -31,20 +55,30 @@ const UserProfile = () => {
         
         <div className="space-y-4">
           <div>
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">Full Name</Label>
             <Input id="name" defaultValue="John Doe" />
           </div>
           <div>
-            <Label htmlFor="phone">Phone</Label>
+            <Label htmlFor="phone">Phone Number</Label>
             <Input id="phone" defaultValue="+1 234 567 890" />
           </div>
+          <div>
+            <Label htmlFor="address">Address</Label>
+            <Input id="address" defaultValue="123 Main St, City" />
+          </div>
+          <Button 
+            onClick={handleProfileUpdate}
+            className="w-full bg-[#1B1B1B] hover:bg-[#1B1B1B]/90"
+          >
+            Save Changes
+          </Button>
         </div>
 
         <div className="border-t pt-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <Wallet className="w-5 h-5" />
-              <span className="font-semibold">Balance</span>
+              <span className="font-semibold">Current Balance</span>
             </div>
             <span className="text-xl font-bold">$250.00</span>
           </div>
@@ -53,7 +87,7 @@ const UserProfile = () => {
         <div className="border-t pt-6">
           <h3 className="font-semibold mb-4 flex items-center gap-2">
             <Clock className="w-5 h-5" />
-            Recent Transactions
+            Transaction History
           </h3>
           <div className="space-y-3">
             {[
